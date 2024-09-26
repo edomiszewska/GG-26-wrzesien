@@ -1,0 +1,105 @@
+DDL definiowanie danych
+create, alter, drop
+
+DML data manipulation language czyli manipulowanie danych
+select, insert, update, delete
+
+DCL data control language czyli jezyk kontroli danych/ przydzielania danych
+grant, revoke, itd.
+
+TCL jezyk kontroli transakcji 
+commit, rollback, begin
+
+DQL - tego juz nie
+
+3 podstawowe pojawiaja sie na egzaminach 
+
+predykaty 
+between, distinct, exists, all
+
+
+===================
+
+select nazwy_kolumn
+from nazwa_tabeli
+where nazwa_kolumnny between wartosc1 and wartosc2;
+
+===================
+
+select * nazwa, cena_jednostka, ilosc_w_jednostce from produkt where cena between 100 and 130;
+
+===================
+
+select nazwy_kolumn
+from nazwa_tabeli
+wherw nazwa_kolumny IN (wartosc1,wartosc2,..);
+
+===================
+
+select nazwa, cena, ilosc from produkt where kategoria_id IN (2,3) and ilosc > 70;
+
+okreslamy zbior wartosci jakie zawiera dana kolumna w tabeli!
+
+===================
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+TO SĄ PREDYKATY!!!!!!!!!!!!!!!!!!!!!!!!!!
+predykat okresla warunek ktory jest prawdziwy, falszywy lub nieznany dla danej wlasnosci
+
+===================
+
+select distinct kraj from producent;
+- kraj niepowtarzajacy sie
+
+===================
+
+select nazwy_kolumn
+from nazwa_tabeli
+where exists
+(select nazwa_kolumn from nazwa_tabeli where warunki)
+
+- ograniczamy wynik naszego zapytania dodatkowym warunkiem
+
+===================
+
+select nazwa from producent
+where exists
+(select nazwa from produkt where produkt.producent_id = producent.id and cena <10);
+
+===================
+any
+some
+all
+===================
+
+select nazwy_kolumn
+from nazwa_tabeli
+where not warunki;
+
+===================
+
+select nazwa from producent where not kraj = "Niemcy";
+
+===================
+
+select nazwa from producent where not kraj like "%Nie";
+
+===================
+
+lewa i prawa strona musza byc spelnione przy AND
+
+===================
+
+select nazwa
+from produkt 
+where cena < 30
+and ilosc > 50;
+
+===================
+
+not - negacja
+and - i, oba warunki spelnione
+
+===================
+
+select nazwisko from klient where nazwisko like "%ek" or nazwisko like "%ak";
+
